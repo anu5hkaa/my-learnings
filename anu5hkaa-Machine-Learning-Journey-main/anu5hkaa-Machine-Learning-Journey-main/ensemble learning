@@ -1,0 +1,131 @@
+# Ensemble Learning
+
+Instead of depending on one model,
+
+Ensemble Learning combines multiple models.
+
+The idea is simple:
+
+> Multiple good opinions are generally more reliable than one opinion.
+
+Two major techniques are:
+
+* Bagging
+* Boosting
+
+---
+
+# Bagging
+
+Bagging builds multiple models **in parallel**.
+
+Every model gets a different bootstrap sample.
+
+For Classification,
+
+the final prediction is based on **Majority Voting**.
+
+For Regression,
+
+the final prediction is based on the **Mean**.
+
+The main objective of Bagging is to reduce **Variance**.
+
+---
+
+# Bootstrapping
+
+Bootstrapping randomly samples **rows (data points)** from the dataset **with replacement**.
+
+Because sampling is with replacement,
+
+some rows may appear multiple times,
+
+while some rows may not appear at all.
+
+Every tree still sees all the features,
+
+but different subsets of the training rows.
+
+---
+
+# Random Forest
+
+Random Forest is simply Bagging with an additional level of randomness.
+
+Not only are the rows sampled randomly,
+
+but each split also considers only a **random subset of features**.
+
+Initially, I wondered why we would ignore some features.
+
+The intuition is:
+
+If one feature is always very dominant,
+
+every Decision Tree will keep selecting that feature.
+
+Then all the trees become similar.
+
+Random Forest forces different trees to consider different features,
+
+allowing them to learn different patterns.
+
+This increases diversity and improves generalization.
+
+---
+
+# Boosting
+
+Unlike Bagging,
+
+Boosting trains models **sequentially**.
+
+Every new model learns from the mistakes made by the previous one.
+
+Its main objective is to reduce **Bias**.
+
+---
+
+# AdaBoost
+
+AdaBoost focuses more on the samples that were previously classified incorrectly.
+
+Misclassified samples receive higher importance.
+
+The next weak learner pays more attention to those difficult examples.
+
+Eventually,
+
+many weak learners combine to form a strong learner.
+
+---
+
+# Gradient Boosting
+
+Gradient Boosting is slightly different.
+
+Instead of increasing sample weights,
+
+it focuses on reducing the remaining error (residuals).
+
+Each new tree tries to correct the mistakes made by the previous tree.
+
+The objective is simple:
+
+> Keep reducing the error step by step.
+
+---
+
+# XGBoost
+
+XGBoost is an optimized implementation of Gradient Boosting.
+
+It includes:
+
+* Better optimization
+* Regularization
+* Automatic handling of missing values
+* Faster training
+
+This is why it performs extremely well on structured/tabular datasets and is widely used in industry.
